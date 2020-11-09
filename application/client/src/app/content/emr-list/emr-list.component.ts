@@ -60,8 +60,7 @@ export class EmrListComponent implements OnInit {
     this.api.orders$.subscribe(EMRList => {
       
       this.EMRs = EMRList;
-      //numArray.sort((a, b) => a - b); // For ascending sort
-     // this.EMRs.sort((a,b) => (a. < b.currentEMRState) ? 1 : ((b.currentEMRState < a.currentEMRState) ? -1 : 0));
+     //this.EMRs.sort((a,b) => (a.currentEMRState.COVID_19 < b.currentEMRState.COVID_19) ? 1 : ((b.currentEMRState.COVID_19 < a.currentEMRState.COVID_19) ? -1 : 0));
      this.EMRs.sort((a,b) => (parseInt((a.patientId).split("pt")[1].split(" ")[0]) - parseInt((b.patientId).split("pt")[1].split(" ")[0])));
       // : ((parseInt((b.patientId).split("pt")[1].split(" ")[0]) < parseInt((a.patientId).split("pt")[1].split(" ")[0])) ? -1 : 0));
       
@@ -153,14 +152,15 @@ export class EmrListComponent implements OnInit {
       this.isAnyLoading = true;
       console.log("in testUpdateLabresult ",this.EMRsList);
       for(var i=0; i < this.EMRsList.length; i++){
-        if(this.EMRsList[i].currentEMRState.COVID_19 == 1 ){
-            let lab_result = this.EMRsList[i].labResult;
-            lab_result = {};
+        if(this.EMRsList[i].currentEMRState.COVID_19 == 1 
+          || this.EMRsList[i].currentEMRState.COVID_19 == undefined){
+            console.log("in testUpdateLabresult--> ", this.EMRsList[i].currentEMRState);
+            let lab_result = this.EMRsList[i].labResult || {};
             let COVID_19 = "COVID_19";
             lab_result[COVID_19] = this.EMRsList[i].covid19_test_results;
             this.EMRsList[i].details.labResult = lab_result;
-            console.log("in testUpdateLabresult--> ", lab_result[COVID_19]);
             this.api.body = this.EMRsList[i];
+            console.log("in testUpdateLabresult api--> ", this.EMRsList[i].lab_result);
             let respose = await this.api.updateEMR2();
             console.log(respose);
           }

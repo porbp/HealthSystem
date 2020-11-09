@@ -48,8 +48,8 @@ export class RuleComponent implements OnInit {
       console.log("-->",this.Rule);
       let reviews;
       for(let obj in rule){
-        //if that rule have reviews -> create graph
-        if(typeof rule[obj] == 'object' && rule[obj] != null){
+        //if that rule have reviews -> create graph //only show covid
+        if(typeof rule[obj] == 'object' && rule[obj] != null && obj == "COVID_19"){
           if(rule[obj].reviews && rule[obj].reviews.length > 0){
             reviews = rule[obj].reviews;
             this.createChart(reviews);
@@ -77,15 +77,20 @@ export class RuleComponent implements OnInit {
     let FNRData = [0];
     let FNRtemp = {};
     this.chartLabels = ['0']
+    //sorted array
+    console.log("before",reviews);
+    reviews.sort((a, b) => parseFloat(a.version) - parseFloat(b.version));
+    console.log(reviews);
     for(let i=0; i< reviews.length; i++){
       
       AccuracyData.push(reviews[i].ACC);
       FNRData.push(reviews[i].FNR);
 
+      
+
       let tempLabel = "version "+ reviews[i].version;
       this.chartLabels.push(tempLabel);
-      // if(this.Rule.COVID_19.currentVersion == reviews[i].version){ 
-      // }
+      
     }
     Accuracytemp["data"] = AccuracyData;
     Accuracytemp["label"] = "Acuuracy Rate";

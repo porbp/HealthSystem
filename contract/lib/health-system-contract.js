@@ -415,8 +415,9 @@ class HealthSystemContractContract extends Contract {
         let emrList = [];
         emrList = await this.queryAllEMR(ctx);
         for(let i=0; i<emrList.length; i++){
-            if(emrList[i].patientId == emr.patientId){ 
-                    // equal to rule, not do, put state to review || query only predict and update state
+            // query only predict and update state
+            if(emrList[i].patientId == emr.patientId ){
+                // ||( emrList[i].currentEMRState[rule.caseName] && emrList[i].currentEMRState[rule.caseName] == EMRStates.EMR_REVIEW)){ 
                     emr.currentEMRState[rule.caseName] = EMRStates.EMR_REVIEW;
                 await ctx.stub.putState(emr.patientId, Buffer.from(JSON.stringify(emr)));
             }else{
@@ -820,7 +821,7 @@ class HealthSystemContractContract extends Contract {
             ruleList[caseName].currentVersion =  review.version;
             ruleList[caseName].reviews = reviewArr;
        
-            await this.queryAllForPredict(ctx,emr,newRule);
+            await this.predictAgain(ctx,emrList,emr,newRule);
             await this.updateRuleList(ctx,newRule,ruleList);
             
         }
@@ -832,6 +833,22 @@ class HealthSystemContractContract extends Contract {
         //     //save new rule to ruleList
         //     await this.updateRuleList(ctx,newRule,ruleList)
         // }
+    }
+
+    async predictAgain(ctx,emrList,emr,newRule){
+        for(let i=0; i<emrList.length; i++){
+            if(emrList[i].currentEMRState[newRule.caseName] 
+                && emrList[i].currentEMRState[newRule.caseName] != EMRStates.EMR_REVIEW){
+
+                emrList[i] = await this.predict(newRule,emrList[i]);
+                await this.savePredictEMR(ctx,emrList[i],newRule);
+
+            }else if(emrList[i].patientId == emr.patientId){
+                
+                emr.currentEMRState[newRule.caseName] = EMRStates.EMR_REVIEW;
+                await ctx.stub.putState(emr.patientId, Buffer.from(JSON.stringify(emr)));
+            }
+        }
     }
 }
 

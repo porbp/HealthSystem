@@ -1,34 +1,40 @@
 
 <section id="rule">
-    <div class="container" style="max-width: 95%;" >
+  <div class="container" style="max-width: 95%;" >
 <p *ngIf="isFinishLoad == false">--- rule are loading or no rule existing ! ---</p>
 <div *ngIf="isFinishLoad" style="display: block; height: 400px; width: 700px;">
-    <canvas mdbChart
-        [chartType]="chartType"
-        [datasets]="chartDatasets"
-        [labels]="chartLabels"
-        [colors]="chartColors"
-        [options]="chartOptions"
-        [legend]="true"
-        (chartHover)="chartHovered($event)"
-        (chartClick)="chartClicked($event)">
-    </canvas>
-  </div>
-  
+  <canvas mdbChart
+      [chartType]="chartType"
+      [datasets]="chartDatasets"
+      [labels]="chartLabels"
+      [colors]="chartColors"
+      [options]="chartOptions"
+      [legend]="true"
+      (chartHover)="chartHovered($event)"
+      (chartClick)="chartClicked($event)">
+  </canvas>
 </div>
-    <div  *ngIf="isFinishLoad" class = "col">
-      <div class="card" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
+
+</div>
+  <div  *ngIf="isFinishLoad" class = "col">
+    <div class="card" style="width: 33rem;">
+      <div class="card-body">
+        <h5 class="card-title">Rule: Covid19</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Review Progress:</h6>
+        <!-- <p *ngFor="let review of Rule.COVID_19.reviews" class="card-text">
+        </p> -->
+        <div *ngIf="Rule.COVID_19 && Rule.COVID_19.reviews">
+          <div *ngFor="let review of Rule.COVID_19.reviews">
+            <p><b>ACC Rate:</b>{{review.ACC }} | 
+              <b>FNR Rate: </b>{{review.FNR }} | With N of <b>{{review.CF_Matrix.N}}</b>
+            </p> 
+          </div>
         </div>
       </div>
-      <!-- <b>Rule: </b> Covid19
-      <b>currentVersion: </b> {{Rule.currentVersion}} -->
-      <!-- <app-predict></app-predict> -->
-
     </div>
+    <!-- <b>Rule: </b> Covid19
+    <b>currentVersion: </b> {{Rule.currentVersion}} -->
+    <!-- <app-predict></app-predict> -->
+
+  </div>
 </section>
