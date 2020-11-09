@@ -102,8 +102,7 @@ class HealthSystemContractContract extends Contract {
     async createEMR(ctx, args) {
 
         const EMR_details = JSON.parse(args);
-        const patientId = EMR_details.patientId;
-    
+        var patientId = EMR_details.patientId;
         console.log("incoming asset fields: " + JSON.stringify(patientId));
         
         var AsBytes = await ctx.stub.getState(patientId);
@@ -152,7 +151,6 @@ class HealthSystemContractContract extends Contract {
     }
 
     async createEMRFromList(ctx, args) {
-
         var EMRList = args;
         EMRList = JSON.parse(EMRList);
         if(EMRList == undefined && EMRList.length < 1){
@@ -318,16 +316,9 @@ class HealthSystemContractContract extends Contract {
             (userId != emr.patientId) &&
             (userType != "lab"))
             throw new Error(`${userId} or ${userType} does not have access to updateEMR with patientId = ${patientId}`);
-            switch (userType) {
+            switch (userType.toLowerCase()) {
                 case "lab": {
                     emr.modifiedBy = userType;
-                    if(emr_update_detail.Extended_Laboratory_Results !== undefined){ 
-                        emr.details.Extended_Laboratory_Results = emr_update_detail.Extended_Laboratory_Results;   
-                    }
-                    if(emr_update_detail.Radiological_Findings !== undefined ){
-                        emr.details.Radiological_Findings = emr_update_detail.Radiological_Findings;
-                    }
-                    
                     if(emr_update_detail.labResult !== undefined ){
                         let labResult = emr_update_detail.labResult;
                         emr.labResult = labResult;
@@ -347,34 +338,20 @@ class HealthSystemContractContract extends Contract {
                     break;
                 }
                 case "doctor": {
-                    if(emr_update_detail.Symptoms !== undefined){
-                        emr.details.Symptoms = emr_update_detail.Symptoms;
-                    }
                     if(emr_update_detail.Clinician_Assessed_Symptoms !== undefined){
                         emr.details.Clinician_Assessed_Symptoms = emr_update_detail.Clinician_Assessed_Symptoms;
                     }
-                    if(emr_update_detail.Comorbidities !== undefined ){
-                        emr.details.Comorbidities = emr_update_detail.Comorbidities;
-                    }
-                    if(emr_update_detail.Vitals !== undefined){
-                        emr.details.Vitals = emr_update_detail.Vitals;
-                    }
-                    emr.modifiedBy = userid;
+                    emr.modifiedBy = userId;
                     await this.normalPredict(ctx,emr);
                     break;
                 }
                 case "patient": {
-                    if(emr_update_detail.Symptoms !== undefined){
-                        emr.details.Symptoms = emr_update_detail.Symptoms;
+                    if(emr_update_detail.symptoms !== undefined){
+                        emr.details.symptoms = emr_update_detail.symptoms;
                     }
-                    if(emr_update_detail.Comorbidities !== undefined){
-                        emr.details.Comorbidities = emr_update_detail.Comorbidities;
-                    }
-                    if(emr_update_detail.Vitals !== undefined){
-                        emr.details.Vitals = emr_update_detail.Vitals;
-                    }
-                    emr.modifiedBy = userid;
+                    emr.modifiedBy = userId;
                     await this.normalPredict(ctx,emr);
+                    break;
                 }
                 default: {
                     return [];
@@ -394,7 +371,7 @@ class HealthSystemContractContract extends Contract {
                     let caseName = ruleList[r].caseName;
                     if(emr.currentEMRState
                         && emr.currentEMRState[caseName]== EMRStates.EMR_REVIEW){
-                        //if it already have labresult == review -> just save update emr
+                        //if it already have lab result == review -> just save update emr
                         await ctx.stub.putState(emr.patientId, Buffer.from(JSON.stringify(emr)));
                     }else{ // lab result not review yet
                         emr = await this.predict(ruleList[r],emr);
