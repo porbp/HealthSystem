@@ -1,0 +1,44 @@
+[
+    {
+        "transactionName": "healthSystemContractExists",
+        "transactionLabel": "A test healthSystemContractExists transaction",
+        "arguments": [
+            "001"
+        ],
+        "transientData": {}
+    },
+    {
+        "transactionName": "createHealthSystemContract",
+        "transactionLabel": "A test createHealthSystemContract transaction",
+        "arguments": [
+            "001",
+            "some value"
+        ],
+        "transientData": {}
+    },
+    {
+        "transactionName": "readHealthSystemContract",
+        "transactionLabel": "A test readHealthSystemContract transaction",
+        "arguments": [
+            "001"
+        ],
+        "transientData": {}
+    },
+    {
+        "transactionName": "updateHealthSystemContract",
+        "transactionLabel": "A test updateHealthSystemContract transaction",
+        "arguments": [
+            "001",
+            "some other value"
+        ],
+        "transientData": {}
+    },
+    {
+        "transactionName": "deleteHealthSystemContract",
+        "transactionLabel": "A test deleteHealthSystemContract transaction",
+        "arguments": [
+            "001"
+        ],
+        "transientData": {}
+    }
+]

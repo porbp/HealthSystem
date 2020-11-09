@@ -1,0 +1,23 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "config": "^2.0.1",
+    "fabric-ca-client": "1.4.0",
+    "fabric-client": "1.4.0",
+    "fabric-network": "1.4.0",
+    "http-errors": "~1.6.2",
+    "ibm-cloud-env": "^0.2.6",
+    "passport": "^0.4.0",
+    "yamljs": "^0.3.0"
+  }
+}
