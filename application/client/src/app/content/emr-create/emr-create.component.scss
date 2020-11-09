@@ -1,0 +1,21 @@
+.alert {
+    margin-top: 19px;
+}
+.spinner-border{
+    width: 5rem !important;
+    height: 5rem !important;
+    margin: -3%;
+    margin-left: 45%;
+    margin-top: 2%;
+}
+.loading{
+    filter: blur(3px);
+    margin-top: 64px !important;
+}
+.loaded{
+    filter: blur(0px);
+    margin-top: -10px;
+}
+.container{
+    margin-top:-10px;
+}

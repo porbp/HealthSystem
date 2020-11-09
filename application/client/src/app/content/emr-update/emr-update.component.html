@@ -1,0 +1,74 @@
+
+    <div class="card text-center">
+      <div class="card-header">
+        Patient ID: {{selectedEMR.patientId}}
+        <button style="float: right;"  *ngIf="userType == 'lab'" type="button" class="btn btn-info btn-sm" (click)="addLabResult()">Add</button> 
+      </div>
+      <!-- lab update page-->
+      <div *ngIf="userType == 'lab'">
+        <form #labResultForm="ngForm" id="ngForm" class="container mt-3" (ngSubmit)="submitLabResult()">
+          <section *ngFor="let l of labResultList; let i = index;">
+            <button type="button" style="float: right;" class="btn btn-danger btn-sm" (click)="removeLabResult(i)">Remove</button>
+                <label>Case Name:</label>
+                <input required style="margin-left: 5%;"  type="text" placeholder="COVID_19" [(ngModel)]="l.casename"
+                  name="casename{{i}}"/><br>
+                <label>Result:</label>
+                <select style="margin-left: 5%;" [(ngModel)]="l.result" name="result{{i}}" placeholder="positive">
+                      <option selected value="positive">Positive</option>
+                      <option value="negative">Negative</option>
+                </select><br>
+          </section>
+        </form>
+        <button style="width: 100%;"form="ngForm" [disabled]="!labResultForm.form.valid" class="btn btn-primary">Update</button> 
+      </div>
+      <button *ngIf="selectedEMR.labResult && selectedEMR.labResult.COVID_19 == undefined"  style="width: 100%;"  
+      (click)="testUpdateCovid()"  class="btn btn-primary">Test Update Covid</button> 
+
+       <!-- doctor page-->
+       <div *ngIf="userType == 'doctor'" class="form-group">
+        <label for="options"><b>Clinician Assessed Symptoms</b> :</label><br>
+        <div *ngFor="let option of checkBox">
+            <label>
+                <input type="checkbox"
+                      name="options"
+                      value="option.checked"
+                      [(ngModel)]="option.checked"/>
+                {{option.name}}
+            </label>
+        </div>
+    </div>
+
+        <!-- patient page-->
+        <div *ngIf="userType == 'patient'" class="form-group">
+            <label for="options"><b>Current Symtomps</b> :</label><br>
+            <label>Day Since Symtomps on Set : <input type="number"
+            [(ngModel)]="days_since_symptom_onset"/></label> 
+            <div *ngFor="let option of checkBox">
+                <label>
+                    <input type="checkbox"
+                          name="options"
+                          value="option.checked"
+                          [(ngModel)]="option.checked"/>
+                    {{option.name}}
+                </label>
+                <label *ngIf="option.name == 'cough' && option.checked == true" style="margin-left: 5%;">
+                  Cough Severity
+                  <select class="form-control" [(ngModel)]="cough_severity">
+                    <option selected="selected" value="Mild">Mild</option>
+                    <option value="Moderate">Moderate</option>
+                    <option value="Severe">Severe</option>
+                  </select>
+                </label>
+                <label *ngIf="option.name == 'sob' && option.checked == true" style="margin-left: 5%;">
+                  Sob Severity
+                  <select class="form-control" [(ngModel)]="sob_severity">
+                    <option selected="selected" value="Mild">Mild</option>
+                    <option value="Moderate">Moderate</option>
+                    <option value="Severe">Severe</option>
+                  </select>
+                </label>
+            </div>
+        </div>
+        <!-- <button (click)="updateEMR()" class="btn btn-primary">update</button>  -->
+        <button *ngIf="userType == 'patient' || userType == 'doctor'" (click)="selectedOptions()" class="btn btn-primary">Update</button> 
+    </div>

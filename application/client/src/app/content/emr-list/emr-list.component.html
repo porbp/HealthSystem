@@ -1,0 +1,159 @@
+
+<div *ngIf="isAnyLoading" class="spinner-border text-primary" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+<div #alert class="alert alert-dismissible fade"role="alert">
+  <button type="button" class="close" aria-label="Close" (click)="closeAlert()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <strong>{{alertMessageType}}</strong> {{alertMessage}}
+</div> 
+<p *ngIf="EMRs[0] == 'none'">--- No EMR List! ---</p>
+<div [ngClass]="{'loading': isAnyLoading == true, 'loaded': isAnyLoading == false }" class="container" style="max-width: 95%;" *ngIf="EMRs[0] != 'none'">
+
+  <button class="btn btn-danger" style="margin: 10px;" *ngIf="EMRsList.length > 0 && userType == 'admin'" (click)="removeAllEMR()">Delete ALL EMR</button>
+  <button class="btn btn-danger" style="margin: 10px;"  *ngIf="EMRsList.length > 0 && userType == 'admin'" (click)="removeRuleList()">Delete RULE</button>
+  <button *ngIf="EMRsList.length > 0 && userType == 'lab'" class="btn btn-success" style="margin: 10px;"  (click)="testUpdateLabresult()"> Test All Display EMR As COVID Lab Result</button>
+    <div class="row">
+      <div class="col">
+        <div  *ngIf="EMRsList.length > 0" class="table-wrapper-scroll-y my-custom-scrollbar">
+        <table class="table table-striped table-bordered mb-0" >
+          <thead style="background-color: aliceblue;">
+          <tr>
+            <th scope="col">Partient Id</th>
+            <th scope="col">Current State</th>
+            <th scope="col">Doctor Id</th>
+            <th scope="col">Covid Test Result</th>
+            <th scope="col">Covid Predict</th>
+            <th scope="col">Predict Score</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let emr of EMRsList" (click)="selectEMR(emr)">
+            <th scope="row">{{ emr.patientId }}</th>
+            <td *ngIf="emr.currentEMRState.COVID_19 == undefined">Updated</td>
+            <td *ngIf="emr.currentEMRState.COVID_19 == 1">Predicted</td>
+           <td *ngIf="emr.currentEMRState.COVID_19 == 2">Review</td>
+           <td>{{ emr.doctorId || "-"}}</td>
+
+           <td> <p *ngIf="emr.labResult && emr.labResult.COVID_19">{{emr.labResult.COVID_19}}</p>
+            <p *ngIf="emr.labResult == undefined ">-</p></td>
+
+            <td> <p *ngIf="emr.predict && emr.predict.COVID_19">{{emr.predict.COVID_19.predictResult}}</p>
+              <p *ngIf="emr.predict == undefined ">-</p></td> 
+
+            <td> <p *ngIf="emr.predict && emr.predict.COVID_19">{{emr.predict.COVID_19.score}}</p>
+              <p *ngIf="emr.predict == undefined ">-</p></td> 
+
+            <!-- <td *ngIf="userType == 'admin'">
+              <button class="btn btn-danger" (click)="removeEMR(emr)"> Delete</button>
+            </td> -->
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div *ngIf="EMRsList.length > 0" class="d-flex justify-content-between p-2">
+        <select [value]='10' class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshEMRList()">
+          <option selected [ngValue]="10">15 items</option>
+          <option [ngValue]="30">30 items</option>
+          <option [ngValue]="30">60 items</option>
+          <option [ngValue]="400">All items</option>
+        </select>
+      </div>
+     <div class="col"> 
+      <div *ngIf="isFinishLoad" style="display: block; height: 400px; width: 700px; margin: 10%">
+        <canvas mdbChart
+            [chartType]="chartType"
+            [datasets]="chartDatasets"
+            [labels]="chartLabels"
+            [colors]="chartColors"
+            [options]="chartOptions"
+            [legend]="true"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)">
+        </canvas>
+      </div>
+      </div>
+    </div>
+      
+      <div class="col-5" *ngIf="selectedEMR && !clickEdit">
+        <div class="card text-center">
+          <div class="card-header">
+            Patient ID: {{selectedEMR.patientId}}
+            <!-- <td *ngIf="userType == 'doctor' || userType == 'lab'"> -->
+              <button style="float:right;" *ngIf="userType == 'admin'" class="btn btn-danger" (click)="removeEMR(selectedEMR)"> Delete</button>
+              <button style="float:right;" *ngIf="userType == 'doctor' || userType == 'lab'" class="btn btn-primary" (click)="updateEMR(emr)"> edit </button>
+            <!-- </td> -->
+          </div>
+          <div class="card-block" style="padding: 5%;">
+            <h4 class="card-title">Details</h4>
+            <tr class="card-text" *ngFor="let detail of selectedEMR.details | keyvalue">
+             
+              <b>{{detail.key || "-"}}</b> 
+              <td *ngIf="isnotObj(detail.value)">: {{detail.value || "-" }}</td>
+              <td *ngIf="!isnotObj(detail.value) && detail.key == 'Clinician_Assessed_Symptoms'">
+                ctab : {{selectedEMR.details.Clinician_Assessed_Symptoms.ctab}}
+                <p>labored_respiration : {{selectedEMR.details.Clinician_Assessed_Symptoms.labored_respiration}}</p>
+                <p>rhonchi : {{selectedEMR.details.Clinician_Assessed_Symptoms.rhonchi}}</p>
+                <p>wheezes : {{selectedEMR.details.Clinician_Assessed_Symptoms.wheezes}}</p>
+              </td>
+              <td *ngIf="!isnotObj(detail.value) && detail.key == 'Comorbidities'">
+                asthma : {{selectedEMR.details.Comorbidities.asthma}}
+                <p>autoimmune_dis : {{selectedEMR.details.Comorbidities.autoimmune_dis}}</p>
+                <p>cancer : {{selectedEMR.details.Comorbidities.cancer}}</p>
+                <p>chd : {{selectedEMR.details.Comorbidities.chd}}</p>
+                <p>diabetes : {{selectedEMR.details.Comorbidities.diabetes}}</p>
+                <p>htn : {{selectedEMR.details.Comorbidities.htn}}</p>
+                <p>smoker : {{selectedEMR.details.Comorbidities.smoker}}</p>
+              </td>
+              <td *ngIf="!isnotObj(detail.value) && detail.key == 'Vitals'">
+                <p>copd : {{selectedEMR.details.Vitals.copd}}</p>
+                <p>dia : {{selectedEMR.details.Vitals.dia}}</p>
+                <p>pulse : {{selectedEMR.details.Vitals.pulse}}</p>
+                <p>sats : {{selectedEMR.details.Vitals.sats}}</p>
+                <p>sys : {{selectedEMR.details.Vitals.sys}}</p>
+                <p>temperature : {{selectedEMR.details.Vitals.temperature}}</p>
+              </td>
+              <td *ngIf="!isnotObj(detail.value) && detail.key == 'symptoms'">
+                cough : {{selectedEMR.details.symptoms.cough}}
+                <p>cough_severity : {{selectedEMR.details.symptoms.cough_severity}}</p>
+                <p>days_since_symptom_onset : {{selectedEMR.details.symptoms.days_since_symptom_onset || "-"}}</p>
+                <p>diarrhea : {{selectedEMR.details.symptoms.diarrhea}}</p>
+                <p>fatigue : {{selectedEMR.details.symptoms.fatigue}}</p>
+                <p>fever : {{selectedEMR.details.symptoms.fever || "-"}} </p>
+                <p>headache : {{selectedEMR.details.symptoms.headache}}</p>
+                <p>loss_of_smell : {{selectedEMR.details.symptoms.loss_of_smell}}</p>
+                <p>loss_of_taste : {{selectedEMR.details.symptoms.loss_of_taste}}</p>
+                <p>muscle_sore : {{selectedEMR.details.symptoms.muscle_sore}}</p>
+                <p>runny_nose : {{selectedEMR.details.symptoms.runny_nose}}</p>
+                <p>sob : {{selectedEMR.details.symptoms.sob}}</p>
+                <p>sob_severity : {{selectedEMR.details.symptoms.sob_severity || "-"}}</p>
+                <p>sore_throat : {{selectedEMR.details.symptoms.sore_throat}}</p>
+              </td>
+            </tr>     
+          </div>
+
+        </div>
+      </div>
+      <!-- for update page -->
+      <div *ngIf="clickEdit" class="col-5">
+        <app-emr-update  [selectedEMR]="selectedEMR"></app-emr-update>
+      </div>
+      <!-- for show list of pateints risk for doctor -->
+      <div *ngIf="userType == 'doctor' &&  EMRsList && EMRsList[3].predict" class="col-3" >
+          <div class="card"> 
+            <div class="card-body" style="color: #721c24; background-color: #f8d7da; border-color: #f5c6cb;">
+              <h5 class="card-title" style="font-weight: 500">WARNING!</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Group of Patients who having Disease</h6>
+              <div class="card-text"  *ngFor="let emr of EMRsList">
+                <div *ngIf="emr.predict">
+                  <div *ngFor="let p of emr.predict |keyvalue">
+                    <p *ngIf="p.value.predictResult == true" ><b>ID: </b> {{emr.patientId}} | <b>Risk of: </b>{{p.key}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>

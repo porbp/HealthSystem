@@ -1,0 +1,58 @@
+@import './../colors.scss';
+
+.map-container{
+overflow:hidden;
+padding-bottom:56.25%;
+position:relative;
+height:0;
+}
+.map-container iframe{
+left:0;
+top:0;
+height:100%;
+width:100%;
+position:absolute;
+}
+
+#table{
+text-align: center;
+
+}
+
+table thead{
+background: linear-gradient(rgb(62, 150, 134), rgb(83, 210, 164));
+}
+
+.list-group-item.active {
+z-index: 2;
+color: #fff;
+background: linear-gradient(rgb(62, 150, 134), rgb(83, 210, 164));
+border:0;
+}
+footer{
+background: linear-gradient(rgb(62, 150, 134), rgb(83, 210, 164));
+}
+
+header nav{
+background: linear-gradient(rgb(62, 150, 134), rgb(83, 210, 164));
+}
+.white-text {
+color: white !important; }
+#noti{
+margin-right: 4%;
+}
+#noti .p1[data-count]:after{
+position:absolute;
+right:10%;
+top:8%;
+content: attr(data-count);
+font-size:40%;
+padding:.2em;
+border-radius:50%;
+line-height:1em;
+color: white;
+background:rgba(255,0,0,.85);
+text-align:center;
+min-width: 1em;
+}
+

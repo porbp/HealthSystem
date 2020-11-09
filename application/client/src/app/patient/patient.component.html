@@ -1,0 +1,80 @@
+<section id="patient">
+  <h3>Patient Portal - {{currentUser.userid}}</h3>
+  <div class="container" *ngIf="EMR">
+    <!-- alert notification -->
+    <div *ngIf="isShowAlert" #alert class="alert alert-danger alert-dismissible fade show" role="alert">
+      <button type="button" class="close" aria-label="Close" (click)="closeAlert()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <strong>WARNING!</strong> <br>
+      <span *ngFor="let a of alertMessageList">{{a}}</span><br>
+      <strong>Please Contact your Doctor or GP!!</strong>
+    </div>
+     <!-- end alert notification -->
+  <div class="row">
+  <div class="col">
+    <button style="float:right;" *ngIf="EMR && clickEdit == false" class="btn btn-primary" (click)="updateSymp()">Update</button>
+    <button style="float:right;" *ngIf="EMR && clickEdit == true" class="btn btn-primary" (click)="back()">Back</button>
+    <table class="table table-hover">
+      <tbody>
+        <!-- <span *ngIf="EMR.predict && EMR.predict.COVID_19"><b>Score :</b> {{EMR.predict.COVID_19.score||""}}</span> -->
+        <!-- <b>Score :</b> {{EMR.predict.COVID_19.score||""}} -->
+        <!-- <tr *ngIf="EMR.labResult">
+          <b>Lab Result</b>
+            <td *ngFor="let lab of EMR.labResult | keyvalue">
+            <b>{{lab.key || "-"}}</b>: 
+            <td>{{lab.value || "-" }}</td>
+        </tr>   -->
+        <tr *ngFor="let detail of EMR.details | keyvalue">
+          <b>{{detail.key || "-"}}</b> 
+          <td *ngIf="isnotObj(detail.value)">: {{detail.value || "-" }}</td>
+          <td *ngIf="!isnotObj(detail.value) && detail.key == 'Clinician_Assessed_Symptoms'">
+            ctab : {{EMR.details.Clinician_Assessed_Symptoms.ctab  || "-"}}
+            <p>labored_respiration : {{EMR.details.Clinician_Assessed_Symptoms.labored_respiration  || "-"}}</p>
+            <p>rhonchi : {{EMR.details.Clinician_Assessed_Symptoms.rhonchi  || "-"}}</p>
+            <p>wheezes : {{EMR.details.Clinician_Assessed_Symptoms.wheezes  || "-"}}</p>
+          </td>
+          <td *ngIf="!isnotObj(detail.value) && detail.key == 'Comorbidities'">
+            asthma : {{EMR.details.Comorbidities.asthma  || "-"}}
+            <p>autoimmune_dis : {{EMR.details.Comorbidities.autoimmune_dis  || "-"}}</p>
+            <p>cancer : {{EMR.details.Comorbidities.cancer  || "-"}}</p>
+            <p>chd : {{EMR.details.Comorbidities.chd  || "-"}}</p>
+            <p>diabetes : {{EMR.details.Comorbidities.diabetes || "-"}}</p>
+            <p>htn : {{EMR.details.Comorbidities.htn || "-"}}</p>
+            <p>smoker : {{EMR.details.Comorbidities.smoker  || "-"}}</p>
+          </td>
+          <td *ngIf="!isnotObj(detail.value) && detail.key == 'Vitals'">
+            <p>copd : {{EMR.details.Vitals.copd  || "-"}}</p>
+            <p>dia : {{EMR.details.Vitals.dia  || "-"}}</p>
+            <p>pulse : {{EMR.details.Vitals.pulse  || "-"}}</p>
+            <p>sats : {{EMR.details.Vitals.sats || "-"}}</p>
+            <p>sys : {{EMR.details.Vitals.sys || "-" }}</p>
+            <p>temperature : {{EMR.details.Vitals.temperature || "-"}}</p>
+          </td>
+          <td *ngIf="!isnotObj(detail.value) && detail.key == 'symptoms'">
+            cough : {{EMR.details.symptoms.cough  || "-"}}
+            <p>cough_severity : {{EMR.details.symptoms.cough_severity || "-"}}</p>
+            <p>days_since_symptom_onset : {{EMR.details.symptoms.days_since_symptom_onset || "-"}}</p>
+            <p>diarrhea : {{EMR.details.symptoms.diarrhea || "-"}}</p>
+            <p>fatigue : {{EMR.details.symptoms.fatigue || "-"}}</p>
+            <p>fever : {{EMR.details.symptoms.fever || "-"}}</p>
+            <p>headache : {{EMR.details.symptoms.headache  || "-"}}</p>
+            <p>loss_of_smell : {{EMR.details.symptoms.loss_of_smell || "-"}}</p>
+            <p>loss_of_taste : {{EMR.details.symptoms.loss_of_taste || "-"}}</p>
+            <p>muscle_sore : {{EMR.details.symptoms.muscle_sore || "-"}}</p>
+            <p>runny_nose : {{EMR.details.symptoms.runny_nose || "-"}}</p>
+            <p>sob : {{EMR.details.symptoms.sob || "-"}}</p>
+            <p>sob_severity : {{EMR.details.symptoms.sob_severity || "-"}}</p>
+            <p>sore_throat : {{EMR.details.symptoms.sore_throat  || "-"}}</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="clickEdit" class="col-5">
+    <app-emr-update  [selectedEMR]="EMR"></app-emr-update>
+  </div>
+</div>
+</div>
+</section>
+

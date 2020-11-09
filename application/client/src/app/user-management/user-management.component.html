@@ -1,0 +1,100 @@
+<section id="user-management">
+  <h3>User Management Page</h3>
+  
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="nav-item">
+      <a href="#tab-01" class="nav-link active" aria-controls="tab-01" role="tab" data-toggle="tab">User Management</a>
+    </li>
+    <li role="presentation" class="nav-item">
+      <a href="#tab-02" class="nav-link" aria-controls="tab-02" role="tab" data-toggle="tab">Add New User</a>
+    </li>
+    <li role="presentation" class="nav-item">
+      <a href="#tab-03" class="nav-link" aria-controls="tab-03" role="tab" data-toggle="tab">Load EMR</a>
+    </li>
+    <li role="presentation" class="nav-item">
+      <a href="#tab-04" class="nav-link" aria-controls="tab-04" role="tab" data-toggle="tab">add EMRs</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="tab-01">
+      <!-- content of tab1 -->
+      <table class="table table-hover" *ngIf="isDisplay">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>id</th>
+            <th>Type</th>
+            <th>is Enrolled</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of allUsers let i = index">
+            <td>{{i+1}}</td>
+            <td>{{ user.id || "-"}}</td>
+            <td>{{ user.usertype || "-"}}</td>
+            <td>{{ user.enrolled || "-"}}</td>
+            <!-- <td>
+              <button class="btn btn-primary" (click)="selectContact(contact)"> Show details</button>
+            </td> -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="tab-02">
+      <div class="row">
+        <div class="col-sm-8 offset-sm-2">
+          <h3>New User Form</h3>
+          <div>
+            <form [formGroup]="newUserForm" (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                <label for="id">ID</label>
+                <input type="text" formControlName="id" class="form-control" name="id" placeholder="Enter User ID" aria-describedby="idHelp">          
+                <div *ngIf="submitted && newUserForm.controls.id.errors" class="error">
+                  <div *ngIf="newUserForm.controls.id.errors.required">ID is required</div>
+                </div>
+                <!-- <small id="idHelp" class="form-text text-muted">Enter user ID</small> -->
+    
+                <label for="password">Password</label>
+                <input type="password" formControlName="password"  name="password" class="form-control" id="password" aria-describedby="passwordHelp" placeholder="Enter Password">
+                <div *ngIf="submitted && newUserForm.controls.password.errors" class="error">
+                  <div *ngIf="newUserForm.controls.password.errors.required">Password is required</div>
+                </div>
+                <!-- <small id="passwordHelp" class="form-text text-muted">Password is Require</small> -->
+    
+                <label for="confirm_password">Confirm Password</label>
+                <input type="password" formControlName="confirm_password"  name="confirm_password" class="form-control" id="confirm_password" aria-describedby="confirm_password_Help" placeholder="Enter Confirm Password">
+                <div *ngIf="submitted && newUserForm.controls.confirm_password.errors" class="error">
+                  <div *ngIf="newUserForm.controls.confirm_password.errors.required">Password confirmation is required
+                  </div>
+                </div>
+                <!-- <small id="confirm_password_Help" class="form-text text-muted">Confirm Password is Require</small> -->
+    
+                <label style="text-align:left">
+                  Type:
+                  <select class="form-control" formControlName="usertype" required>
+                    <option *ngFor="let r of types" [ngValue]="r">{{ r }}</option>
+                  </select>
+                  <div *ngIf="submitted && newUserForm.controls.usertype.errors" class="error">
+                    <div *ngIf="newUserForm.controls.usertype.errors.required">Type is required</div>
+                  </div>
+                </label>
+              </div>
+              <input type="submit" style="width:100%" value="Create User" class="form-button">
+            </form>
+            <div *ngIf="submitted" class="results">
+              <p *ngIf="success; else elseBlock">User Registered Successfully!</p>
+              <ng-template #elseBlock>ERROR registering user please make sure the passwords match.</ng-template>
+            </div>
+          </div>
+        </div>
+      </div>    
+    </div>
+    <div role="tabpanel" style="margin-top: 5%; " class="tab-pane" id="tab-03">
+    <app-emr-list></app-emr-list>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="tab-04">
+        <app-emr-create></app-emr-create>
+      </div>
+  </div>
+</section>
+
