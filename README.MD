@@ -12,7 +12,7 @@ The Proposed COVID-Predicting model system based Hyperleadge fabric Blockchain f
 
 <strong>Step 1.</strong> Clone the repositories with Git clone or dowload as a zip file<br>
 
-  <p><code>git clone https://github.com/porbp/HealthSystem-COVID.git</code></p>
+  <p><code>git clone https://github.com/porbp/HealthSystem.git</code></p>
 
 <strong>Step 2.</strong> Run VS code and install IBM Blockchain extension VS code on VS code<br>
 
@@ -57,13 +57,16 @@ Then, wait until the local fabric environment started.
 6. Under <strong>Fabric Wallets</strong> > right click on Org1 > Export Wallet. Save this folder to HealthSystem/gateway/local/gen_local_wallet
     <img width="1153" alt="Screen Shot 2563-11-10 at 13 37 26" src="https://user-images.githubusercontent.com/55483608/98625236-56354c00-2363-11eb-89bd-7870991b750b.png">
     
-## Run client application
+## Build and Run client application
 1. Running Server: Navigate to HealthSystem/application/server 
-run <code>node server.js</code> on command-line
+Install : <code>npm install</code>
+run : <code>ng serve</code>
 
 2. Running Client: Navigate to HealthSystem/application/client 
-run <code>ng serve</code> on command-line
-### Error🚨, if there are any errors, please run <code>npm install</code> to install required files 
+Install : <code>npm install</code>
+run : <code>node server.js</code>
+
+### Error🚨, 
 
 3. Typing http://localhost:4200/login to view Website
 
