@@ -94,7 +94,9 @@ Then, go to tab <strong>Add New User</strong> > create <strong>UserId:</strong> 
 
 ## Related Links
 
-https://github.com/mdcollab/covidclinicaldata
+[COVID Data Repositories](https://github.com/mdcollab/covidclinicaldata)
+
+[Installation IBM VScode Extension](https://github.com/horeaporutiu/VSCodeTutorial)
 
 https://nodejs.org/en/docs/guides/getting-started-guide/
 
