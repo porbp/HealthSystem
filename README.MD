@@ -47,6 +47,7 @@ The Proposed COVID-Predicting model system based Hyperleadge fabric Blockchain f
 2. Under <strong>FABRIC ENVIRONMENTS</strong> click + Add local or remote environment > Create new from Template > 1 Org template(1 CA, 1 peer, 1 channel) > type “local” > enter. 
 Then, wait until the local fabric environment started.
    <img width="1103" alt="Screen Shot 2563-11-10 at 13 34 39" src="https://user-images.githubusercontent.com/55483608/98620719-ec647480-2359-11eb-8221-be9ae9d98f07.png">
+   ### Important🚨, Please make sure, you are able run docker on your computer.
   
 3. double click on <strong>local</strong> under <strong>FABRIC ENVIRONMENTS</strong> to run blockchain environment > under <strong>Installed</strong> > click + Install > choose "HealthSystem@30.0.0.cds". 
    <img width="1166" alt="Screen Shot 2563-11-10 at 13 35 28" src="https://user-images.githubusercontent.com/55483608/98620722-ecfd0b00-2359-11eb-898a-2aada6fea4ee.png">
