@@ -23,7 +23,7 @@ The Proposed COVID-Predicting model system based Hyperleadge fabric Blockchain f
   2.2) Click Install, then allow to open on VSCode
   <img width="1235" alt="Screen Shot 2563-11-10 at 16 01 41" src="https://user-images.githubusercontent.com/55483608/98629962-29d2fd00-236e-11eb-9fdd-f757dc975899.png">
   
-  According to the IBM Blockchain Extionsion on VS code, All the prerequisites need to established for supporting and running this plugin for VS code. Difference OS required difference suporting requirements.[More Detail](https://marketplace.visualstudio.com/items?itemName=IBMBlockchain.ibm-blockchain-platform#dependency-installation)
+  According to the IBM Blockchain Extionsion on VS code, All the prerequisites need to established for supporting and running this plugin for VS code. Difference OS required difference suporting requirements.[More Details](https://cloud.ibm.com/docs/blockchain/howto?topic=blockchain-develop-vscode)
   
     Click install on VS code and wait until it installed
 ![1](https://user-images.githubusercontent.com/55483608/98636499-167a5e80-237b-11eb-8bd6-881437aaa7fc.PNG)
