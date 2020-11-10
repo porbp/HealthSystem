@@ -81,3 +81,13 @@ Then, go to tab <strong>Add New User</strong> > create <strong>UserId:</strong> 
 
 4. The result of predicting other EMRs for the potential of having COVID_19.
 <img width="1235" alt="Screen Shot 2563-11-10 at 15 15 33" src="https://user-images.githubusercontent.com/55483608/98627201-b9c17880-2367-11eb-820c-373563b4daf5.png">
+
+## Related Links
+
+https://github.com/mdcollab/covidclinicaldata
+
+https://nodejs.org/en/docs/guides/getting-started-guide/
+
+https://angular.io/cli/serve
+
+
