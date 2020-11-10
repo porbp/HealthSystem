@@ -1,5 +1,6 @@
 # HealthSystem-COVID
 
+The Proposed COVID-Predicting model system based Hyperleadge fabric Blockchain from IBM.
 
 ## Prerequisites :
 
@@ -30,7 +31,7 @@
   
 ### Click on the Square on the left side menu bar for accessing IBM Blockchain Platform.
 
-1. Import smart contract by clicking on <strong>...</strong> under <strong>SMART CONTRACTS</strong> > Import a Packet > Browse > HealthSystem@29.0.0.cds > Select
+1. Import smart contract by clicking on <strong>...</strong> under <strong>SMART CONTRACTS</strong> > Import a Packet > Browse > HealthSystem@30.0.0.cds > Select
   <img width="1121" alt="Screen Shot 2563-11-10 at 13 34 06" src="https://user-images.githubusercontent.com/55483608/98621723-0010da80-235c-11eb-83c8-68475a4366eb.png">
 
 2. Under <strong>FABRIC ENVIRONMENTS</strong> click + Add local or remote environment > Create new from Template > 1 Org template(1 CA, 1 peer, 1 channel) > type “local” > enter. 
@@ -40,7 +41,7 @@ Then, wait until the local fabric environment started.
 3. double click on <strong>local</strong> under <strong>FABRIC ENVIRONMENTS</strong> to run blockchain environment > under <strong>Installed</strong> > click + Install > choose "HealthSystem@29.0.0.cds". 
    <img width="1166" alt="Screen Shot 2563-11-10 at 13 35 28" src="https://user-images.githubusercontent.com/55483608/98620722-ecfd0b00-2359-11eb-898a-2aada6fea4ee.png">
  
-4. Then, under <strong>Instantiated</strong> > click + Instantiate > and select the "HealthSystem@29.0.0.cds". Click enter until the smartcontract strating to instantiate.
+4. Then, under <strong>Instantiated</strong> > click + Instantiate > and select the "HealthSystem@30.0.0.cds". Click enter until the smartcontract strating to instantiate.
    <img width="1168" alt="Screen Shot 2563-11-10 at 13 36 05" src="https://user-images.githubusercontent.com/55483608/98624162-53d1f280-2361-11eb-8f1e-b653c0a1dbed.png">
  
 5. Under <strong>FABRIC GATEWAY</strong>  click Org1 > admin. 
@@ -54,13 +55,12 @@ Then, wait until the local fabric environment started.
     <img width="1153" alt="Screen Shot 2563-11-10 at 13 37 26" src="https://user-images.githubusercontent.com/55483608/98625236-56354c00-2363-11eb-89bd-7870991b750b.png">
     
 ## Run client application
-1. Navigate to HealthSystem/application/server 
-<code>node server.js</code>
-### Error🚨, if it errors, please run <code>npm install</code>
+1. Running Server: Navigate to HealthSystem/application/server 
+run <code>node server.js</code> on command-line
 
-2. Navigate to HealthSystem/application/client 
-<code>ng serve</code>
-### Error🚨, if it errors, please run <code>npm install</code>
+2. Running Client: Navigate to HealthSystem/application/client 
+run <code>ng serve</code> on command-line
+### Error🚨, if there are any errors, please run <code>npm install</code> to install required files 
 
 3. Typing http://localhost:4200/login to view Website
 
