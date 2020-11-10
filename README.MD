@@ -4,9 +4,9 @@ The Proposed COVID-Predicting model system based Hyperleadge fabric Blockchain f
 
 ## Prerequisites :
 
-1. Install VS code version 1.39 or grater https://code.visualstudio.com/download
+1. Install VS code version 1.39 or greater https://code.visualstudio.com/download
 
-2. Install Node.js version 8.XX or grater and Install NPM version 5.XX or grater http://nodejs.org/en/download/
+2. Install Node.js version 8.XX or greater and Install NPM version 5.XX or greater http://nodejs.org/en/download/
 
 ## Setting Blockchain Network On Local With VS Code :
 
@@ -20,7 +20,8 @@ The Proposed COVID-Predicting model system based Hyperleadge fabric Blockchain f
   
   https://marketplace.visualstudio.com/items?itemName=IBMBlockchain.ibm-blockchain-platform
  
-  2.2) Click Install
+  2.2) Click Install, then allow to open on VSCode
+  <img width="1235" alt="Screen Shot 2563-11-10 at 16 01 41" src="https://user-images.githubusercontent.com/55483608/98629962-29d2fd00-236e-11eb-9fdd-f757dc975899.png">
   
   
   2.3) Restart Visual Studio Code to complete installation of the extension.
