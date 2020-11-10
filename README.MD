@@ -77,7 +77,7 @@ run : <code>node server.js</code>
 
 3. Typing http://localhost:4200/login to view Website
 
-## Test Scenario: Test first Covid reported in system
+## Test Scenario: First COVID-19 Reported on one patient
 
 1. Login as Admin with <strong>UserId:</strong> admin <strong>Password:</strong> adminpw
 <img width="1235" alt="Screen Shot 2563-11-10 at 15 13 48" src="https://user-images.githubusercontent.com/55483608/98627179-af06e380-2367-11eb-90ad-7eb46e684ee5.png">
@@ -87,17 +87,17 @@ run : <code>node server.js</code>
 
 Then, go to tab <strong>Add New User</strong> > create <strong>UserId:</strong> lab1 with <strong>UserType:</strong> lab.
 
-3. Logout > Login as lab1 > select pt4 from the left panel. Add Lab result with casename <strong>COVID_19</strong> and click Update.
+3. Logout > Login as lab1 > select pt4 from the left panel. Add Lab result with casename <strong>COVID_19</strong> and click Update. (To assuming pt4 is the first patient who have COVID-19 in this system)
 <img width="1235" alt="Screen Shot 2563-11-10 at 15 15 14" src="https://user-images.githubusercontent.com/55483608/98627195-b6c68800-2367-11eb-8af2-3173be9d7cf3.png">
 
-4. The result of predicting other EMRs for the potential of having COVID_19.
+4. The disease prediction model on smart contract excecuted and return the result of COVID-19 predicting on remaining EMRs.
 <img width="1235" alt="Screen Shot 2563-11-10 at 15 15 33" src="https://user-images.githubusercontent.com/55483608/98627201-b9c17880-2367-11eb-820c-373563b4daf5.png">
 
 ## Related Links
 
 [COVID Data Repositories](https://github.com/mdcollab/covidclinicaldata)
 
-[Installation IBM VScode Extension](https://github.com/horeaporutiu/VSCodeTutorial)
+[IBM VScode Extension for Smart Contract Development Tutorial](https://github.com/horeaporutiu/VSCodeTutorial)
 
 https://nodejs.org/en/docs/guides/getting-started-guide/
 
