@@ -25,7 +25,7 @@ The Proposed COVID-Predicting model system based Hyperleadge fabric Blockchain f
   
   According to the IBM Blockchain Extionsion on VS code, All the prerequisites need to established for supporting and running this plugin for VS code. Difference OS required difference suporting requirements.[More Detail](https://marketplace.visualstudio.com/items?itemName=IBMBlockchain.ibm-blockchain-platform#dependency-installation)
   
-  
+    Click install on VS code and wait until it installed
 ![1](https://user-images.githubusercontent.com/55483608/98636499-167a5e80-237b-11eb-8bd6-881437aaa7fc.PNG)
   
   2.3) Install all prequisites for setting local IBM Blockchain environment, After installed all requirement Dependencies, restart again and click ckeck updates
