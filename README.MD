@@ -28,7 +28,7 @@ The Proposed COVID-Predicting model system based Hyperleadge fabric Blockchain f
  Click install on VScode and wait until it installed
 ![1](https://user-images.githubusercontent.com/55483608/98636499-167a5e80-237b-11eb-8bd6-881437aaa7fc.PNG)
   
-  2.3) Install all prequisites for setting local IBM Blockchain environment, After installed all requirement Dependencies, restart again and click ckeck updates
+  2.3) Install all prequisites for setting local IBM Blockchain environment, After installed all requirement Dependencies, restart again and click check updates
   
  ![2](https://user-images.githubusercontent.com/55483608/98636506-19754f00-237b-11eb-8b99-6973f176043b.PNG)
  
