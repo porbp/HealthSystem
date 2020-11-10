@@ -31,14 +31,16 @@ The Proposed COVID-Predicting model system based Hyperleadge fabric Blockchain f
   
 ### Click on the Square on the left side menu bar for accessing IBM Blockchain Platform.
 
+
+
 1. Import smart contract by clicking on <strong>...</strong> under <strong>SMART CONTRACTS</strong> > Import a Packet > Browse > HealthSystem@30.0.0.cds > Select
   <img width="1121" alt="Screen Shot 2563-11-10 at 13 34 06" src="https://user-images.githubusercontent.com/55483608/98621723-0010da80-235c-11eb-83c8-68475a4366eb.png">
-
+  
 2. Under <strong>FABRIC ENVIRONMENTS</strong> click + Add local or remote environment > Create new from Template > 1 Org template(1 CA, 1 peer, 1 channel) > type “local” > enter. 
 Then, wait until the local fabric environment started.
    <img width="1103" alt="Screen Shot 2563-11-10 at 13 34 39" src="https://user-images.githubusercontent.com/55483608/98620719-ec647480-2359-11eb-8221-be9ae9d98f07.png">
   
-3. double click on <strong>local</strong> under <strong>FABRIC ENVIRONMENTS</strong> to run blockchain environment > under <strong>Installed</strong> > click + Install > choose "HealthSystem@29.0.0.cds". 
+3. double click on <strong>local</strong> under <strong>FABRIC ENVIRONMENTS</strong> to run blockchain environment > under <strong>Installed</strong> > click + Install > choose "HealthSystem@30.0.0.cds". 
    <img width="1166" alt="Screen Shot 2563-11-10 at 13 35 28" src="https://user-images.githubusercontent.com/55483608/98620722-ecfd0b00-2359-11eb-898a-2aada6fea4ee.png">
  
 4. Then, under <strong>Instantiated</strong> > click + Instantiate > and select the "HealthSystem@30.0.0.cds". Click enter until the smartcontract strating to instantiate.
@@ -65,11 +67,14 @@ run <code>ng serve</code> on command-line
 3. Typing http://localhost:4200/login to view Website
 
 ## Test Scenario: Test first Covid reported in system
+
 1. Login as Admin with <strong>UserId:</strong> admin <strong>Password:</strong> adminpw
 <img width="1235" alt="Screen Shot 2563-11-10 at 15 13 48" src="https://user-images.githubusercontent.com/55483608/98627179-af06e380-2367-11eb-90ad-7eb46e684ee5.png">
 
-2. Go to tab <strong>add EMRs</strong> > Choose File > "Covid-data-test-for-EMR.csv" > Create.  Go to tab <strong>Add New User</strong> > create <strong>UserId:</strong> lab1 with <strong>UserType:</strong> lab
+2. Go to tab <strong>add EMRs</strong> > Choose File "Covid-data-test-for-EMR.csv" [Link to file](https://github.com/porbp/HealthSystem/blob/main/Covid-data-test-for-EMR.csv) > click Create.  
 <img width="1235" alt="Screen Shot 2563-11-10 at 15 13 27" src="https://user-images.githubusercontent.com/55483608/98627184-b1693d80-2367-11eb-946e-f8a9e4c9c5ba.png">
+
+Then, go to tab <strong>Add New User</strong> > create <strong>UserId:</strong> lab1 with <strong>UserType:</strong> lab.
 
 3. Logout > Login as lab1 > select pt4 from the left panel. Add Lab result with casename <strong>COVID_19</strong> and click Update.
 <img width="1235" alt="Screen Shot 2563-11-10 at 15 15 14" src="https://user-images.githubusercontent.com/55483608/98627195-b6c68800-2367-11eb-8af2-3173be9d7cf3.png">
