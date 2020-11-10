@@ -4,7 +4,7 @@ The Proposed COVID-Predicting model system based Hyperleadge fabric Blockchain f
 
 ## Prerequisites :
 
-1. Install VS code version 1.39 or greater https://code.visualstudio.com/download
+1. Install VS code version 1.39 (Best)or greater https://code.visualstudio.com/download
 
 2. Install Node.js version 8.XX or greater and Install NPM version 5.XX or greater http://nodejs.org/en/download/
 
@@ -23,12 +23,19 @@ The Proposed COVID-Predicting model system based Hyperleadge fabric Blockchain f
   2.2) Click Install, then allow to open on VSCode
   <img width="1235" alt="Screen Shot 2563-11-10 at 16 01 41" src="https://user-images.githubusercontent.com/55483608/98629962-29d2fd00-236e-11eb-9fdd-f757dc975899.png">
   
+  According to the IBM Blockchain Extionsion on VS code, All the prerequisites need to established for supporting and running this plugin for VS code. Difference OS required difference suporting requirements.[More Detail](https://marketplace.visualstudio.com/items?itemName=IBMBlockchain.ibm-blockchain-platform#dependency-installation)
   
-  2.3) Restart Visual Studio Code to complete installation of the extension.
   
-  2.4) Install all prequisites for setting local IBM Blockchain environment
+![1](https://user-images.githubusercontent.com/55483608/98636499-167a5e80-237b-11eb-8bd6-881437aaa7fc.PNG)
   
-## Set Smart contract and Start local IBM Blockchain :
+  2.3) Install all prequisites for setting local IBM Blockchain environment, After installed all requirement Dependencies, restart again and click ckeck updates
+  
+ ![2](https://user-images.githubusercontent.com/55483608/98636506-19754f00-237b-11eb-8b99-6973f176043b.PNG)
+ 
+ 
+### Important🚨, Please make sure, you are able to use the IBM Blockchain Extension for VS code before moving to next step.
+  
+## Import Smart contract and Start local IBM Blockchain :
   
 ### Click on the Square on the left side menu bar for accessing IBM Blockchain Platform.
 
@@ -66,7 +73,6 @@ run : <code>ng serve</code>
 Install : <code>npm install</code>
 run : <code>node server.js</code>
 
-### Error🚨, 
 
 3. Typing http://localhost:4200/login to view Website
 
